@@ -2,22 +2,41 @@
 
 {% block body %}
 
-    <div class="main login_body">
-        <h1 class="login_heading">Sign Up</h1>
+<div class="main login_body">
+    <h1 class="login_heading">Register</h1>
+    <div>
         <form method="post">
             {% csrf_token %}
-            {{ form.username }}
-            {{ form.first_name }}
-            {{ form.last_name }}
-            {{ form.email }}
-            {{ form.password1 }}
-            {{ form.password2 }}
-            
-            <button class="login_button" type="submit">Sign Up</button>
-        </form>
+            <div>
+                <input autofocus class="login_form" type="text" name="username" placeholder="Username" autofocus>
+            </div>
 
-        <p class="donthaveacc">Already have an account?</p>
-        <a class="donthaveacc signup" style="margin-top: -2px;" href="{% url 'login' %}">Login Here</a>
+            <div>
+                <input class="login_form" type="text" name="first_name" placeholder="First Name" required>
+            </div>
+
+            <div>
+                <input class="login_form" type="text" name="last_name" placeholder="Last Name" required>
+            </div>
+
+            <div>
+                <input class="login_form" type="email" name="email" placeholder="Email" required>
+            </div>
+
+            <div>
+                <input class="login_form" type="password" name="password1" placeholder="Password">
+            </div>
+
+            <div>
+                <input class="login_form" type="password" name="password2" placeholder="Confirm Password">
+            </div>
+
+            <input class="login_button" type="submit" value="Register">
+        </form>
     </div>
+
+    <p class="donthaveacc">Already have an account?</p>
+    <a class="donthaveacc signup" style="margin-top: -2px;" href="{% url 'login' %}">Login Here</a>
+</div>
 
 {% endblock %}
