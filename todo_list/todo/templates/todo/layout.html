@@ -7,7 +7,30 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="{% static 'todo/styles.css' %}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href='https://unpkg.com/css.gg@2.0.0/icons/css/trash.css' rel='stylesheet'>
+        <link href='https://unpkg.com/css.gg@2.0.0/icons/css/pen.css' rel='stylesheet'>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
 
+            // Improved element retrieval: Prefer getElementById for username_popup
+            const username = document.querySelector('.username');
+            const usernamePopup = document.getElementById('username_popup');
+
+            if (username && usernamePopup) { // Ensure elements exist before attaching events
+            username.addEventListener('focus', () => {
+                usernamePopup.style.display = 'block';
+            });
+
+            username.addEventListener('blur', () => {
+                usernamePopup.style.display = 'none';
+            });
+            } else {
+            console.error('Username or username_popup element not found!');
+            }
+            });
+
+        </script>
     </head>
 
     <body>

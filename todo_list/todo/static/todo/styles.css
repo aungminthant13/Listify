@@ -1,0 +1,214 @@
+body {
+    background-color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+.main {
+    margin-left: 350px;
+    margin-right: 350px;
+    border: 1px dotted #ff06063d;
+}
+
+.heading {
+    font-size: 30px;
+}
+
+.add_task_button {
+    background-color: #ffffff;
+    color: #eb8f3b;
+    border: none;
+    font-size: 15px;
+}
+
+.add_task_button:hover {
+    border: 1px solid #2a2a2a;
+    border-radius: 5px;
+}
+
+.view_buttons {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.button {
+    font-size: 15px;
+    background-color: #ffffff;
+    border-width: 0.5px;
+    border-radius: 5px;
+}
+
+.task {
+    color: #373737;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.task > .task_body{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    position: relative;
+    padding: 10px;
+    font-size: 15px;
+}
+
+
+.task > .task_button_group {
+    color: #eb8f3b;
+}
+
+.task:hover {
+    border: 1px solid #474747;
+    border-radius: 5px;
+    border-color: #474747;
+
+    color: #ff1616;
+}
+
+.task > #task_title {
+    color: #000000;
+    font-size: 20px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    text-decoration: none;
+}
+
+.task > #task_description {
+    color: #292929d0;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.task > #task_datetime {
+    color: #5601ff;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.task > #task_button {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.rightmost {
+    right:10px;
+    margin-top: 10px;
+}
+
+.task > .link:hover {
+    text-decoration: underline;
+}
+
+.username {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+    background-color: #ffffff;
+    
+    color: #272727;
+    border-radius: 5px;
+    border-width: 0px;
+}
+.username:hover {
+    background-color: #ffb861;
+    box-shadow: 2px 2px 2px rgba(28, 28, 28, 0.41);
+}
+
+.username:focus {
+    background-color: #d1964d;
+}
+
+#username_popup {
+    position: absolute;
+    display: none;
+    right: 10px;
+    top: 50px;
+    
+    width:200px;
+    padding: 5px;;
+    color: #ffffffc0;
+    background-color: #2d2d2dbe;
+    border-radius: 5px;
+}
+
+#logout_button {
+    position: absolute;
+    right: 10px;
+    top: 40px;
+}
+ 
+.edit_button {
+    position: absolute;
+    right: 350px;
+    padding: 5px;
+}
+
+
+
+.login_body {
+    margin-top: 200px;
+}
+
+.login_heading {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.login_form {
+    font-size: 15px;
+    width: 250px;
+    height: 25px;
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #3d3d3d;
+    border-radius: 5px;
+}
+
+.login_form:focus {
+    border: 1px solid #ff1616;
+}
+
+.login_button {
+    background-color: #474747;
+    color: #ffffff;
+    font-size: 15px;
+    width: 255px;
+    height: 30px;
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #3d3d3d;
+    border-radius: 5px;
+}
+
+.login_button:hover {
+    background-color: #ff8d37;
+    color: #373737;
+}
+
+.donthaveacc {
+    justify-content: center;
+    margin: auto;
+    display: flex;
+    margin-top: 10px;
+    margin: auto;  /* Centering without flexbox */
+    margin-top: 10px;
+}
+
+.signup {
+    color: #373737;
+    
+}
+
+.signup:hover {
+    color: #eb8f3b;
+}

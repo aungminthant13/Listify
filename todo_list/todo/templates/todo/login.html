@@ -2,14 +2,22 @@
 
 {% block body %}
 
-<h1>Login</h1>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Login">
-</form>
 
-<p>Dont have an account? <a href="{% url 'register' %}">Register</a></p>
+<div class="main login_body">
+    <h1 class="login_heading">Login</h1>
+
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            <div><input class="login_form" type="text" autofocus name="username" placeholder="Username"></div>
+            <div><input class="login_form" type="password" name="password" placeholder="Password"></div>
+            <input class="login_button" type="submit" value="login">
+        </form>
+    </div>
+
+    <p class="donthaveacc">Don't have an account?</p>
+    <a class="donthaveacc signup" style="margin-top: -2px;" href="{% url 'register' %}">Register Here</a>
+</div>
 
 {% endblock %}
