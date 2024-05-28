@@ -18,16 +18,28 @@
             const usernamePopup = document.getElementById('username_popup');
 
             if (username && usernamePopup) { // Ensure elements exist before attaching events
-            username.addEventListener('mouseover', () => {
-                usernamePopup.style.display = 'block';
-            });
+                username.addEventListener('mouseover', () => {
+                    usernamePopup.style.display = 'block';
+                });
 
-            username.addEventListener('mouseout', () => {
-                usernamePopup.style.display = 'none';
-            });
+                username.addEventListener('mouseout', () => {
+                    usernamePopup.style.display = 'none';
+                });
             } else {
-            console.error('Username or username_popup element not found!');
+                console.error('Username or username_popup element not found!');
             }
+
+                const task = document.querySelector('#task');
+                const buttons = document.querySelector(".task_button_group");
+
+                task.addEventListener('mouseover', () => {
+                    buttons.style.color = 'black';
+                })
+
+                task.addEventListener('mouseout', () => {
+                    buttons.style.color = 'white';
+                })
+
             });
 
         </script>
