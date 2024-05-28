@@ -2,14 +2,43 @@
 
 {% block body %}
 
-<h1>Task Form</h1>
+<style>
+    .task_form {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: 50px;
+        margin-right: 20px;
+        align-items: normal;
+    }
+</style>
 
-<a href="{% url 'tasks' %}">cancel task</a>
+<div class="popup">
+    <h1 style="text-align: center;">Task Form</h1>
 
-<form method="POST" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
-</form>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label class="task_form">Task Title</label>
+        <div class="task_form">{{ form.title }}</div>
+
+        <label class="task_form">Description</label>
+        <div class="task_form">{{ form.description }}</div>
+
+        <label class="task_form">Date</label>
+        <div class="task_form">{{ form.date }}</div>
+
+        <label class="task_form">Time</label>
+        <div class="task_form">{{ form.time }}</div>
+
+        <div class="task_form">
+            <label>Complete</label>
+            {{ form.complete }}
+        </div>
+
+        <div>
+            <input class="login_button" type="submit" value="Submit">
+            <a class="login_button" style="text-decoration: none;" href="{% url 'tasks' %}">cancel task</a>
+        </div>
+    </form>
+</div>
 
 {% endblock %}

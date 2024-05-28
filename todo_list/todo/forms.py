@@ -14,20 +14,13 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
-
-# forms.py
 from django import forms
 from .models import Tasks
 
 class TaskForm(forms.ModelForm):
+    date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=False)
+    time = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time'}), required=False)
+
     class Meta:
         model = Tasks
-        fields = ['title', 'description', 'datetime', 'complete']
-        widgets = {
-            'datetime': forms.DateTimeInput(attrs={
-                'class': 'form-control datetimepicker-input',
-                'data-target': '#datetimepicker1'
-            }),
-        }
-
-
+        fields = ['title', 'description', 'date', 'time', 'complete']

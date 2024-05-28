@@ -2,7 +2,6 @@
 
 {% block body %}
 
-
 {% if request.user.is_authenticated %}
 <form method="post" action="{% url 'logout' %}">
     {% csrf_token %}
@@ -13,8 +12,10 @@
     </div>
 
     <div id="username_popup">
-        <p> @{{ request.user.get_username }} </p>
-        <p> {{ request.user.email }} </p>
+        <p> 
+            @{{ request.user.get_username }}
+            {{ request.user.email }}
+        </p>
     </div>
 
 {% else %}
@@ -24,42 +25,50 @@
 
 <div class="main">
     <h1 class="heading">Task List</h1>
-    <a href="{% url 'task-create' %}"><button class="add_task_button"><i class="fa fa-plus"></i> Add Task</button></a>
-<hr>
-    <div class="view_buttons">
-        <button class="button" id="all_tasks">All</button>
-        <button class="button" id="upcoming_tasks">Upcoming</button>
-        <button class="button" id="done_tasks">Done</button>
-        <button class="button" id="due_tasks">Past Due</button>
-    </div>
+    <a href="{% url 'task-create' %}">
+        <button class="add_task_button">
+            <i class="fa fa-plus"></i> Add Task
+        </button>
+    </a>
+    <hr>
 
+    {% if tasks %}
+        {% for task in tasks %}
+            <div class="task" id="task">
+                
+                    {% if task.complete %}
+                        <div class="task-complete-icon"></div>
 
-    {% for task in tasks %}
-        <div class="task" id="task">
-            <div class="task_body">
-                {% if task.complete %}
-                <div class="task-complete-icon"></div>
-                <i id="task_title"><s>
-                    <a  style="text-decoration: none; color: #000000;" href="{% url 'task' task.id %}"><div>{{ task.title }}</div></a>
-                </s></i>
+                        <div class="task_body"> 
+                            <i class="task_title"><s>
+                                <a style="text-decoration: none; color: black;"style="color: #000000;" href="{% url 'task-update' task.id %}">{{ task.title }}</a>
+                            </s></i>
+                            <div class="task_description">{{ task.description }}</div>
+                            <div class="task_datetime">{% if task.date %}{{ task.date }} | {% endif %}{% if task.time %}{{ task.time }}{% endif %}</div>
+                        </div>
 
-                {% else %}
-                <a id="task_title" href="{% url 'task' task.id %}"><div>{{ task.title }}</div></a>
-
-                {% endif %}
-
-                <div id="task_description"> {{ task.description }} </div>
-                <div id="task_datetime"> {{ task.datetime }} </div>
+                    {% else %}
+                        <div class="task-incomplete-icon"></div>
+                        
+                        <div class="task_body">
+                            <a class="task_title" href="{% url 'task-update' task.id %}">{{ task.title }}</a>
+                            <div class="task_description">{{ task.description }}</div>
+                            <div class="task_datetime">{% if task.date %}{{ task.date }} | {% endif %}{% if task.time %}{{ task.time }}{% endif %}</div>
+                        </div>
+                    {% endif %}
+                    
+                <div class="task_button_group">
+                    <a href="{% url 'task-update' task.id %}">
+                        <button class="button task_button">Edit</button>
+                    </a>
+                    <a href="{% url 'task-delete' task.id %}">
+                        <button class="button task_button">Delete</button>
+                    </a>
+                </div>
             </div>
-
-            <div class="task_button_group">
-                <a href="{% url 'task-update' task.id %}"><button class="button" id="task_button" style="border: none;"><i class="gg-pen"></i></button></a>
-                <a href="{% url 'task-delete' task.id %}"><button class="button" id="task_button" style="border: none;"><i class="gg-trash"></i> </button></a>
-            </div>
-        </div>
-    {% empty %}
+        {% endfor %}
+    {% else %}
         <p>No Tasks</p>
-    {% endfor %}
-
+    {% endif %}
 </div>
 {% endblock %}

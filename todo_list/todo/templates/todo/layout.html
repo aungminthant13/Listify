@@ -18,11 +18,11 @@
             const usernamePopup = document.getElementById('username_popup');
 
             if (username && usernamePopup) { // Ensure elements exist before attaching events
-            username.addEventListener('focus', () => {
+            username.addEventListener('mouseover', () => {
                 usernamePopup.style.display = 'block';
             });
 
-            username.addEventListener('blur', () => {
+            username.addEventListener('mouseout', () => {
                 usernamePopup.style.display = 'none';
             });
             } else {
@@ -31,22 +31,6 @@
             });
 
         </script>
-        
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-        <!-- jQuery and Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-        <!-- Moment.js (required by Bootstrap DateTimePicker) -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-
-        <!-- Bootstrap DateTimePicker CSS and JS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempus-dominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tempus-dominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
-
     </head>
 
     <body>

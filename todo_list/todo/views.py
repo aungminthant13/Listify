@@ -1,4 +1,4 @@
-
+import datetime
 from django.forms import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -10,10 +10,13 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
+from .forms import CustomUserCreationForm
 from django.contrib.auth import login
 
 
 from .models import Tasks
+from .forms import TaskForm
+
 
 # Create your views here.
 
@@ -28,13 +31,18 @@ class CustomLoginView(LoginView):
 
 class RegisterPage(FormView):
     template_name = 'todo/register.html'
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm  # Use CustomUserCreationForm
     redirect_authenticated_user = True
     success_url = reverse_lazy('tasks')
 
     def form_valid(self, form):
         user = form.save()
         if user is not None:
+            user.refresh_from_db()  # Load the profile instance created by the signal
+            user.first_name = form.cleaned_data.get('first_name')
+            user.last_name = form.cleaned_data.get('last_name')
+            user.email = form.cleaned_data.get('email')
+            user.save()
             login(self.request, user)
         return super(RegisterPage, self).form_valid(form)
     
@@ -70,20 +78,24 @@ class TaskDetail(LoginRequiredMixin, DetailView):
     context_object_name = 'task'
     template_name = 'todo/task.html'
 
-
+    
 class TaskCreate(CreateView):
     model = Tasks
-    fields = ['title', 'description', 'datetime', 'complete']
+    form_class = TaskForm
     success_url = reverse_lazy('tasks')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        return super(TaskCreate, self).form_valid(form)
+        # Combine date and time into a single datetime field if both are provided
+        date = form.cleaned_data.get('date')
+        time = form.cleaned_data.get('time')
+        return super().form_valid(form)
+    
 
 
 class TaskUpdate(UpdateView):
     model = Tasks
-    fields = ['title', 'description', 'datetime', 'complete']
+    fields = ['title', 'description', 'date', 'time', 'complete']
     success_url = reverse_lazy('tasks')
 
 
