@@ -35,7 +35,6 @@
     {% if tasks %}
         {% for task in tasks %}
             <div class="task" id="task">
-                
                     {% if task.complete %}
                         <div class="task-complete-icon"></div>
 
@@ -57,7 +56,7 @@
                         </div>
                     {% endif %}
                     
-                <div class="task_button_group">
+                <div id="task_button_group">
                     <a href="{% url 'task-update' task.id %}">
                         <button class="button task_button">Edit</button>
                     </a>

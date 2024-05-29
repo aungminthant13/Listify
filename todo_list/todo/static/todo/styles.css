@@ -52,7 +52,40 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    border-bottom: 0.5px solid #bcbcbcc1;
+}
+
+.task:hover {
+    border: 1px solid #474747;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-bottom: none;
+}
+
+.task_title {
+    color: #000000;
+    font-size: 20px;
+    margin: 4px 0;
+    text-decoration: none;
+}
+
+.task_description {
+    color: #292929d0;
+    margin: 4px 0;
+}
+
+.task_datetime {
+    color: #5601ff;
+    margin: 4px 0;
+}
+
+.task_button {
+    margin: 0 3px;
+    border: none;
+    background: none;
 }
 
 .task_body {
@@ -79,48 +112,15 @@ body {
     border-radius: 50%;
 }
 
-.task_button_group {
+#task_button_group {
     display: flex;
     align-items: center;
-    color: #eb8f3b;
 }
 
-.task_button_group a {
+#task_button_group a {
     margin: 0 3px;
 }
 
-.task:hover {
-    border: 1px solid #474747;
-    border-radius: 5px;
-}
-
-.task_title {
-    color: #000000;
-    font-size: 20px;
-    margin: 4px 0;
-    text-decoration: none;
-}
-
-.task_description {
-    color: #292929d0;
-    margin: 4px 0;
-}
-
-.task_datetime {
-    color: #5601ff;
-    margin: 4px 0;
-}
-
-.task_button {
-    margin: 0 3px;
-    border: none;
-    background: none;
-}
-
-.rightmost {
-    right: 10px;
-    margin-top: 10px;
-}
 
 .username {
     position: absolute;

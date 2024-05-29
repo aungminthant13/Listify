@@ -1,4 +1,3 @@
-import datetime
 from django.forms import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -13,10 +12,8 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import CustomUserCreationForm
 from django.contrib.auth import login
 
-
 from .models import Tasks
 from .forms import TaskForm
-
 
 # Create your views here.
 
@@ -50,8 +47,6 @@ class RegisterPage(FormView):
         if self.request.user.is_authenticated:
             return redirect('tasks')
         return super(RegisterPage, self).get(*args, **kwargs)
-    
-
 
 
 class TaskList(LoginRequiredMixin, ListView):
@@ -79,7 +74,7 @@ class TaskDetail(LoginRequiredMixin, DetailView):
     template_name = 'todo/task.html'
 
     
-class TaskCreate(CreateView):
+class TaskCreate(LoginRequiredMixin, CreateView):
     model = Tasks
     form_class = TaskForm
     success_url = reverse_lazy('tasks')
@@ -93,13 +88,13 @@ class TaskCreate(CreateView):
     
 
 
-class TaskUpdate(UpdateView):
+class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Tasks
-    fields = ['title', 'description', 'date', 'time', 'complete']
+    form_class = TaskForm
     success_url = reverse_lazy('tasks')
 
 
-class DeleteView(DeleteView):
+class DeleteView(LoginRequiredMixin, DeleteView):
     model = Tasks
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
