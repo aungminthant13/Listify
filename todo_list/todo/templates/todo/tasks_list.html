@@ -12,10 +12,8 @@
     </div>
 
     <div id="username_popup">
-        <p> 
-            @{{ request.user.get_username }}
-            {{ request.user.email }}
-        </p>
+            <div>@{{ request.user.get_username }}</div>
+            <div>{{ request.user.email }}</div>
     </div>
 
 {% else %}
@@ -35,35 +33,35 @@
     {% if tasks %}
         {% for task in tasks %}
             <div class="task" id="task">
-                    {% if task.complete %}
-                        <div class="task-complete-icon"></div>
+                {% if task.complete %}
+                    <span class="item task-complete-icon"></span>
 
-                        <div class="task_body"> 
-                            <i class="task_title"><s>
-                                <a style="text-decoration: none; color: black;"style="color: #000000;" href="{% url 'task-update' task.id %}">{{ task.title }}</a>
-                            </s></i>
-                            <div class="task_description">{{ task.description }}</div>
-                            <div class="task_datetime">{% if task.date %}{{ task.date }} | {% endif %}{% if task.time %}{{ task.time }}{% endif %}</div>
-                        </div>
+                    <span class="item task_body"> 
+                        <i class="task_title"><s>
+                            <a style="text-decoration: none; color: black;"style="color: #000000;" href="{% url 'task-update' task.id %}">{{ task.title }}</a>
+                        </s></i>
+                        <div class="task_description">{{ task.description }}</div>
+                        <div class="task_datetime">{% if task.date %}{{ task.date }} | {% endif %}{% if task.time %}{{ task.time }}{% endif %}</div>
+                    </span>
 
-                    {% else %}
-                        <div class="task-incomplete-icon"></div>
+                {% else %}
+                    <span class="item task-incomplete-icon"></span>
                         
-                        <div class="task_body">
-                            <a class="task_title" href="{% url 'task-update' task.id %}">{{ task.title }}</a>
-                            <div class="task_description">{{ task.description }}</div>
-                            <div class="task_datetime">{% if task.date %}{{ task.date }} | {% endif %}{% if task.time %}{{ task.time }}{% endif %}</div>
-                        </div>
-                    {% endif %}
+                    <span class="item task_body">
+                        <a class="task_title" href="{% url 'task-update' task.id %}">{{ task.title }}</a>
+                        <div class="task_description">{{ task.description }}</div>
+                        <div class="task_datetime">{% if task.date %}{{ task.date }} | {% endif %}{% if task.time %}{{ task.time }}{% endif %}</div>
+                    </span>
+                {% endif %}
                     
-                <div id="task_button_group">
+                <span class="item" id="task_button_group">
                     <a href="{% url 'task-update' task.id %}">
                         <button class="button task_button">Edit</button>
                     </a>
                     <a href="{% url 'task-delete' task.id %}">
                         <button class="button task_button">Delete</button>
                     </a>
-                </div>
+                </span>
             </div>
         {% endfor %}
     {% else %}
