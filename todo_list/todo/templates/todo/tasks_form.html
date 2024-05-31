@@ -2,35 +2,59 @@
 
 {% block body %}
 
-
 <div class="popup">
     <h1 style="text-align: center;">Task Form</h1>
 
     <form method="POST" action="">
         {% csrf_token %}
-        <label class="task_form">Task Title</label>
-        <div class="task_form">{{ form.title }}</div>
+        <div class="form-group">
+            <label for="id_title" class="task_form_label">Task Title</label>
+            {{ form.title }}
+        </div>
 
-        <label class="task_form">Description</label>
-        <div class="task_form">{{ form.description }}</div>
+        <div class="form-group">
+            <label for="id_description" class="task_form_label">Description</label>
+            {{ form.description }}
+        </div>
 
-        <label class="task_form">Date</label>
-        <div class="task_form">{{ form.date }}</div>
+        <div class="form-group">
+            <label for="id_date" class="task_form_label">Date</label>
+            {{ form.date }}
+        </div>
 
-        <label class="task_form">Time</label>
-        <div class="task_form">{{ form.time }}</div>
+        <div class="form-group">
+            <label for="id_time" class="task_form_label">Time</label>
+            {{ form.time }}
+        </div>
 
-        <div class="task_form">
-            <label>Complete</label>
+        <div class="form-group">
+            <label for="id_priority" class="task_form_label">Priority</label>
+            {{ form.priority }}
+        </div>
+
+        <style>
+            .complete-form {
+                width: 150px;
+                height: 25px;
+                margin: auto;
+            }
+
+            .complete-form-label {
+                font-size: 15px;
+                margin-left: 15px;
+            }
+        </style>
+
+        <div class="complete-form">
+            <label for="id_complete" class="complete-form-label">Complete</label>
             {{ form.complete }}
         </div>
 
-        <div>
-            <a class="login_button" style="text-decoration: none;" href="{% url 'tasks' %}">Cancel</a>
+        <div> 
             <input class="login_button" type="submit" value="Submit">
+            <a class="login_button" href="{% url 'tasks' %}">Cancel</a>
         </div>
     </form>
 </div>
-
 
 {% endblock %}
