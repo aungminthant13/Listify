@@ -53,6 +53,37 @@
                         <div class="task_datetime">{% if task.date %}{{ task.date }} | {% endif %}{% if task.time %}{{ task.time }}{% endif %}</div>
                     </span>
                 {% endif %}
+
+                <style>
+                    .highest {
+                        color: red;
+                    }
+
+                    .medium {
+                        color: rgb(255, 230, 0);
+                    }
+
+                    .lowest {
+                        color: rgb(0, 255, 17);
+                    }
+                </style>
+
+                <span class="item">
+                    {% if task.priority %}
+                        <span>
+                            {% if task.priority == 1 %}
+                                <span class="highest">Highest Priority</span>
+                            {% elif task.priority == 2 %}
+                                <span class="medium">Medium Priority</span>
+                            {% elif task.priority == 3 %}
+                                <span class="lowest">Low Priority</span>
+                            {% elif task.priority == 4 %}
+                                No Priority
+                            {% endif %}
+                        </span>
+                    {% endif %}
+                </span>
+                
                     
                 <span class="item" id="task_button_group">
                     <a href="{% url 'task-update' task.id %}">
